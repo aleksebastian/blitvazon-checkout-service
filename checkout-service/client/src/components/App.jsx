@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-// For testing purposes uncomment line below
-// import fetch from 'node-fetch';
 import fetchWithTimeout from '../fetchWithTimeout.js';
 import PriceDeliveryAndStock from '../components/PriceDeliveryAndStock.jsx';
 import QuantityDropDown from '../components/QuantityDropDown.jsx';
@@ -37,12 +35,13 @@ export default class Checkout extends React.Component {
 
   async getPriceAndInventory(productId) {
     try {
-      const response = await fetchWithTimeout(`http://ec2-3-141-67-137.us-east-2.compute.amazonaws.com:4003/priceandinventory/id/${productId}`, {
+      const response = await fetchWithTimeout(`http://localhost:4003/priceandinventory/id/${productId}`, {
         timeout: 3000
       });
       const parsedResponse = await response.json();
       let productPrice = parsedResponse[0].price;
       let productInventory = parsedResponse[0].inventory;
+      console.log(typeof productPrice, productPrice);
       this.setState({
         productId: productId,
         price: productPrice,

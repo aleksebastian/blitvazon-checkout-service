@@ -1,13 +1,12 @@
-import React from "react";
-import ReactDOM from 'react-dom';
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
+import React from 'react';
+import ReactDOM, { render, unmountComponentAtNode } from 'react-dom';
+import { act } from 'react-dom/test-utils';
 
-import Enzyme, { shallow, configure, mount } from "enzyme";
+import Enzyme, { shallow, configure, mount } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 configure({ adapter: new Adapter() });
 
-import Checkout from '../../client/src/components/Checkout.jsx';
+import Checkout from '../../client/src/components/App.jsx';
 import PriceDeliveryAndStock from '../../client/src/components/PriceDeliveryAndStock.jsx';
 
 describe("Checkout component", () => {
@@ -27,7 +26,7 @@ describe("Checkout PriceDeliveryAndStock component", () => {
     const wrapper = mount(<PriceDeliveryAndStock />);
 
     wrapper.setProps({price: 18.99});
-    expect(wrapper.contains('18.99')).toEqual(true);
+    expect(wrapper.contains('$18.99')).toEqual(true);
   });
 
   test("renders in stock text if inventory greater than 0", () => {
