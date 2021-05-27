@@ -6,14 +6,13 @@
 
 ## Related services
 
-- [Photos](https://github.com/blitva/photos-service)
-- [Description](https://github.com/blitva/description-service)
-- [Product features](https://github.com/blitva/product-features-service)
-- [Customer questions](https://github.com/blitva/customer-questions-service)
-- [Comparison](https://github.com/blitva/comparison-service)
-- [Reviews](https://github.com/blitva/reviews-service)
-- [Navbar](https://github.com/blitva/nav-bar)
-- [Footer](https://github.com/blitva/footer)
+- [Photos](https://github.com/blitva/photos-service) - Alek O.
+- [Description](https://github.com/blitva/description-service) Amos N.
+- [Product features](https://github.com/blitva/product-features-service) - Justin R.
+- [Customer questions](https://github.com/blitva/customer-questions-service) - Justin R.
+- [Reviews](https://github.com/blitva/reviews-service) - Barsha S.
+- [Navbar](https://github.com/blitva/nav-bar) - Justin R.
+- [Footer](https://github.com/blitva/footer) - Alek O.
 
 ## Table of Contents
 
