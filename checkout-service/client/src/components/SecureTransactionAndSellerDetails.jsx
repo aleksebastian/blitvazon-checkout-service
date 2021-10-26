@@ -96,6 +96,7 @@ const SecureTransactionAndSellerDetails = (props) => {
           onClick={() => togglePopover()}
           style={{ height: "15px", verticalAlign: "top", cursor: "pointer" }}
           src='https://images-na.ssl-images-amazon.com/images/G/01/x-locale/checkout/truespc/secured-ssl._CB485936932_.png'
+          alt='grey small photo of a lock'
         ></img>
         <SecureTransactionText onClick={() => togglePopover()}>
           Secure Transaction
