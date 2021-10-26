@@ -1,5 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import fetchWithTimeout from "../fetchWithTimeout.js";
 import PriceDeliveryAndStock from "../components/PriceDeliveryAndStock.jsx";
@@ -38,7 +37,7 @@ export default class Checkout extends React.Component {
       const response = await fetchWithTimeout(
         `http://localhost:4003/priceandinventory/id/${productId}`,
         {
-          timeout: 3000,
+          timeout: 500,
         }
       );
       const parsedResponse = await response.json();
@@ -63,7 +62,7 @@ export default class Checkout extends React.Component {
       const response = await fetchWithTimeout(
         `http://ec2-18-217-85-161.us-east-2.compute.amazonaws.com:4004/description/${productId}`,
         {
-          timeout: 3000,
+          timeout: 1000,
         }
       );
       const parsedResponse = await response.json();
