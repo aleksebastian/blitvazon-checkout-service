@@ -10,8 +10,10 @@ COPY ["package.json", "package-lock.json*", "./"]
 
 RUN npm install --production
 
+COPY wait-for-it.sh /usr/wait-for-it.sh
+
+RUN chmod +x /usr/wait-for-it.sh
+
 COPY . .
 
 CMD ["npm", "start"]
-
-RUN npm run seed 
