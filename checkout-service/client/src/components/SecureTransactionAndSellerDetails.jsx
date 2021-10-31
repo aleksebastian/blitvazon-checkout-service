@@ -44,7 +44,7 @@ const SellerDetails = styled(Text)`
 const SecureTransactionPopover = styled.div`
   position: absolute;
   margin-top: 12px;
-  margin-left: -10%;
+  margin-left: -13%;
   border: 1px solid #cdcdcd;
   border-radius: 4px;
   width: 384px;
@@ -53,6 +53,11 @@ const SecureTransactionPopover = styled.div`
   background: white;
   z-index: 1000;
   cursor: default;
+  @media screen and (max-width: 1100px) {
+    margin-left: 0;
+    padding-left: 0;
+    width: 70%;
+  }
 `;
 
 const PopoverBoldText = styled(Text)`
@@ -83,6 +88,9 @@ const X = styled(Text)`
   margin-left: 95%;
   margin-top: 0.3em;
   cursor: pointer;
+  @media screen and (max-width: 1100px) {
+    margin-left: 94%;
+  }
 `;
 
 const SecureTransactionAndSellerDetails = (props) => {
@@ -95,8 +103,8 @@ const SecureTransactionAndSellerDetails = (props) => {
         <img
           onClick={() => togglePopover()}
           style={{ height: "15px", verticalAlign: "top", cursor: "pointer" }}
-          src='https://images-na.ssl-images-amazon.com/images/G/01/x-locale/checkout/truespc/secured-ssl._CB485936932_.png'
-          alt='grey small photo of a lock'
+          src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/checkout/truespc/secured-ssl._CB485936932_.png"
+          alt="grey small photo of a lock"
         ></img>
         <SecureTransactionText onClick={() => togglePopover()}>
           Secure Transaction
