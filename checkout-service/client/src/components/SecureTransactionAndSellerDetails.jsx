@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import Chance from 'chance';
+import React, { useState } from "react";
+import styled from "styled-components";
+import Chance from "chance";
 const chance = new Chance();
 
 const SecureTransactionAndSellerDetailsWrapper = styled.div`
@@ -18,8 +18,8 @@ const SecureTransactionText = styled(Text)`
   color: #007185;
   margin-left: 15px;
   cursor: pointer;
-  &:hover{
-    color: #C7511F;
+  &:hover {
+    color: #c7511f;
   }
 `;
 
@@ -31,7 +31,7 @@ const SellerDetailsTitle = styled(Text)`
 
 const SellerDetails = styled(Text)`
   font-size: 12px;
-  color: #0F1111;
+  color: #0f1111;
   margin-left: 10px;
   margin-top: 6px;
   max-width: 140px;
@@ -44,7 +44,7 @@ const SellerDetails = styled(Text)`
 const SecureTransactionPopover = styled.div`
   position: absolute;
   margin-top: 12px;
-  margin-left: -10%;
+  margin-left: -13%;
   border: 1px solid #cdcdcd;
   border-radius: 4px;
   width: 384px;
@@ -53,6 +53,11 @@ const SecureTransactionPopover = styled.div`
   background: white;
   z-index: 1000;
   cursor: default;
+  @media screen and (max-width: 1100px) {
+    margin-left: 0;
+    padding-left: 0;
+    width: 70%;
+  }
 `;
 
 const PopoverBoldText = styled(Text)`
@@ -72,8 +77,8 @@ const BlueInlineText = styled(Text)`
   color: #007185;
   display: inline;
   cursor: pointer;
-  &:hover{
-    color: #C7511F;
+  &:hover {
+    color: #c7511f;
     text-decoration: underline;
   }
 `;
@@ -81,55 +86,62 @@ const BlueInlineText = styled(Text)`
 const X = styled(Text)`
   display: block;
   margin-left: 95%;
-  margin-top: .3em;
+  margin-top: 0.3em;
   cursor: pointer;
+  @media screen and (max-width: 1100px) {
+    margin-left: 94%;
+  }
 `;
-
 
 const SecureTransactionAndSellerDetails = (props) => {
   const [popover, setPopover] = useState(false);
   const togglePopover = () => setPopover(!popover);
 
-  return <div>
-    <SecureTransactionAndSellerDetailsWrapper>
-      <img
-        onClick={() => togglePopover()}
-        style={{height: "15px", verticalAlign: "top", cursor: "pointer"}}
-        src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/checkout/truespc/secured-ssl._CB485936932_.png">
-      </img>
-      <SecureTransactionText onClick={() => togglePopover()}>Secure Transaction</SecureTransactionText>
-      {popover && (
-      <SecureTransactionPopover>
-        <X onClick={() => togglePopover()}>x</X>
-        <PopoverBoldText>Your transaction is secure</PopoverBoldText>
-        <RegularText>
-          We work hard to protect your security and privacy. Our payment security system encrypts your information during transmission. We don’t share your credit card details with third-party sellers, and we don’t sell your information to others.
-          <BlueInlineText>Learn more</BlueInlineText>
-        </RegularText>
-      </SecureTransactionPopover>
-      )}
-      <table style={{marginTop: "8px"}}>
-        <tbody>
-          <tr>
-            <td>
-              <SellerDetailsTitle>Ships from</SellerDetailsTitle>
-            </td>
-            <td>
-              <SellerDetails>{props.seller}</SellerDetails>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <SellerDetailsTitle>Sold By</SellerDetailsTitle>
-            </td>
-            <td>
-              <SellerDetails>{props.seller}</SellerDetails>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </SecureTransactionAndSellerDetailsWrapper>
+  return (
+    <div>
+      <SecureTransactionAndSellerDetailsWrapper>
+        <img
+          onClick={() => togglePopover()}
+          style={{ height: "15px", verticalAlign: "top", cursor: "pointer" }}
+          src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/checkout/truespc/secured-ssl._CB485936932_.png"
+          alt="grey small photo of a lock"
+        ></img>
+        <SecureTransactionText onClick={() => togglePopover()}>
+          Secure Transaction
+        </SecureTransactionText>
+        {popover && (
+          <SecureTransactionPopover>
+            <X onClick={() => togglePopover()}>x</X>
+            <PopoverBoldText>Your transaction is secure</PopoverBoldText>
+            <RegularText>
+              {`${chance.paragraph({ sentences: 3 })} `}
+              <BlueInlineText>Learn more</BlueInlineText>
+            </RegularText>
+          </SecureTransactionPopover>
+        )}
+        <table style={{ marginTop: "8px" }}>
+          <tbody>
+            <tr>
+              <td>
+                <SellerDetailsTitle>Ships from</SellerDetailsTitle>
+              </td>
+              <td>
+                <SellerDetails>{props.seller}</SellerDetails>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <SellerDetailsTitle>Sold By</SellerDetailsTitle>
+              </td>
+              <td>
+                <SellerDetails>{props.seller}</SellerDetails>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </SecureTransactionAndSellerDetailsWrapper>
     </div>
-}
+  );
+};
 
 export default SecureTransactionAndSellerDetails;

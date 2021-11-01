@@ -1,0 +1,18 @@
+version: "3"
+services:
+  node:
+    restart: always
+    build: .
+    ports:
+      - 4003:4003
+    volumes:
+      - ./:/code
+    command: bash -c "/usr/wait-for-it.sh --timeout=0 mongo:27017 && npm run seed && npm run start"
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+volumes:
+  mongodb:
