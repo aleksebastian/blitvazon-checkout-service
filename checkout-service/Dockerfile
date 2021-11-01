@@ -16,4 +16,4 @@ RUN chmod +x /usr/wait-for-it.sh
 
 COPY . .
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
