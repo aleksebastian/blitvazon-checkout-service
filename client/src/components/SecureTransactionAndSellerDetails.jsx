@@ -56,7 +56,7 @@ const SecureTransactionPopover = styled.div`
   @media screen and (max-width: 1100px) {
     margin-left: 0;
     padding-left: 0;
-    width: 70%;
+    max-width: 250px;
   }
 `;
 
