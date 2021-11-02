@@ -1,11 +1,9 @@
 {
-  "name": "fec-blitva-checkout-service",
-  "version": "",
-  "description": "Checkout service for Hack Reactor FEC. Amazon product page mockup",
-  "author": "",
-  "license": "",
-  "engines": {
-    "node": ">=6.13.0"
+  "name": "checkout-service",
+  "version": "1.0.0",
+  "description": "## Checkout service",
+  "directories": {
+    "test": "test"
   },
   "scripts": {
     "seed": "node database/seed/populate.js",
@@ -16,7 +14,8 @@
     "start:dev": "nodemon ./server/index.js",
     "build": "webpack --mode=production",
     "build:dev": "webpack --mode=development --watch",
-    "deploy": "node ./deploy/upload-build.js"
+    "deploy": "node ./deploy/upload-build.js",
+    "build-ship": "webpack --mode=production && node ./deploy/upload-build.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.13.6",
@@ -44,9 +43,9 @@
     "babel-plugin-styled-components": "^1.12.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "compression-webpack-plugin": "^9.0.0",
     "dotenv": "^10.0.0",
     "enzyme": "^3.11.0",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "jest": "^26.6.3",
     "jsdom": "^16.4.0",
     "mocha": "^8.2.1",
@@ -57,5 +56,15 @@
     "webpack": "^5.13.0",
     "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^4.3.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aleksebastian/blitvazon-checkout-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aleksebastian/blitvazon-checkout-service/issues"
+  },
+  "homepage": "https://github.com/aleksebastian/blitvazon-checkout-service#readme"
 }
