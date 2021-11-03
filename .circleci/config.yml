@@ -19,4 +19,4 @@ jobs:
           name: Run tests
           command: |
             echo $MODE
-            npm run test:all
+            npm run test:all 
