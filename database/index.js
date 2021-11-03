@@ -1,14 +1,20 @@
 const Mongoose = require("mongoose");
-// uncomment and replace first argument in line 11 to use in db in local
-const localDb = "mongodb://localhost/prinventory";
-const dockerDb = "mongodb://mongo:27017/prinventory";
+require("dotenv").config();
+let mongoUri;
+
+if (process.env.MODE === "dev") {
+  mongoUri = "mongodb://localhost/photos";
+} else {
+  mongoUri = "mongodb://mongo:27017/photos";
+}
+
 const mongooseOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
 };
 
-Mongoose.connect(dockerDb, mongooseOptions, (err) => {
+Mongoose.connect(mongoUri, mongooseOptions, (err) => {
   if (err) {
     console.error(err);
   } else {

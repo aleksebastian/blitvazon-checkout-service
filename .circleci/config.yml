@@ -1,0 +1,22 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.7
+
+workflows:
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:14.15.4
+      - image: circleci/mongo:4.4.1
+    steps:
+      - checkout
+      - run:
+          name: Install project dependencies
+          command: npm ci
+      - run:
+          name: Run tests
+          command: |
+            echo $MODE
+            npm run test:all
