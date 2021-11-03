@@ -4,6 +4,8 @@ FROM node:12.18.1
 
 ENV NODE_ENV=production
 
+ENV MODE=prod
+
 WORKDIR /app
 
 COPY ["package.json", "package-lock.json*", "./"]

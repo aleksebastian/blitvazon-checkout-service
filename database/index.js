@@ -3,9 +3,9 @@ require("dotenv").config();
 let mongoUri;
 
 if (process.env.MODE === "dev") {
-  mongoUri = "mongodb://localhost/photos";
+  mongoUri = "mongodb://localhost/prinventory";
 } else {
-  mongoUri = "mongodb://mongo:27017/photos";
+  mongoUri = "mongodb://mongo:27017/prinventory";
 }
 
 const mongooseOptions = {
