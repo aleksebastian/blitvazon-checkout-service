@@ -24,5 +24,10 @@ coverage
 build/
 dist/
 
+# Bundle and env file
 checkout_bundle*
 .env
+
+# Webpack stats for bundle analyzer (dev)
+stats.json
+compilation-stats.json
