@@ -37,7 +37,7 @@ export default class Checkout extends React.Component {
   async getPriceAndInventory(productId) {
     try {
       const response = await fetchWithTimeout(
-        `http://localhost:4003/priceandinventory/id/${productId}`,
+        `http://3.142.94.151:4003/priceandinventory/id/${productId}`,
         {
           timeout: 500,
         }
@@ -99,7 +99,7 @@ export default class Checkout extends React.Component {
     };
     try {
       const res = await fetchWithTimeout(
-        "http://localhost:4003/listnamesandsecuretransactiontext/id/1",
+        "http://3.142.94.151:4003/listnamesandsecuretransactiontext/id/1",
         {
           timeout: 500,
         }
