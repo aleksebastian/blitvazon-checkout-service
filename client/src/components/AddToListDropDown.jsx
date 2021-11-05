@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { v4 as uuidv4 } from 'uuid';
-import Chance from 'chance';
-const chance = new Chance();
+import React, { useState } from "react";
+import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 
 const AddToListDropDownWrapper = styled.div`
-  background-color: #E7E9EC;
+  background-color: #e7e9ec;
   border: 1px solid !important;
   border-color: #adb1b8 !important;
-  font-family: "Amazon Ember",Arial,sans-serif;
+  font-family: "Amazon Ember", Arial, sans-serif;
   font-size: 13px;
   line-height: 29px;
   margin-top: 13px;
   height: 29px;
   border-radius: 3px;
   cursor: pointer;
+  z-index: 3;
 `;
 
 const AddToListSection = styled.span`
@@ -36,11 +35,11 @@ const DropDownArrowSection = styled.span`
   border-radius: 0px 3px 3px 0px;
   &:hover {
     background-color: #e2e5ea;
-  };
+  }
   &:focus {
     box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
     outline: 0;
-  };
+  }
 `;
 
 const DropDownArrowIcon = styled.i`
@@ -72,7 +71,7 @@ const ListItem = styled("li")`
   list-style: none;
   height: 29px;
   margin: 0.2em 0 0.2em 0;
-  &:hover{
+  &:hover {
     background-color: #e2e5ea;
   }
 `;
@@ -107,38 +106,84 @@ const ListItemStatus = styled.span`
   color: #565959;
 `;
 
-const generateListItems = () => {
-  let randomNumOfLists = Math.floor(Math.random() * (5 - 1) + 1);
-  let listStatus = ['public', 'private'];
+const getRandomIntInclusive = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+const generateListItems = (props) => {
+  let randomNumOfLists = getRandomIntInclusive(1, 5);
+  let listStatus = ["public", "private"];
   let listItems = [];
   for (let i = 0; i < randomNumOfLists; i++) {
     let randomPrivateOrPublicIndex = Math.floor(Math.random() * Math.floor(2));
-    listItems.push(<ListItem key={uuidv4()}><ListItemImgWrapper><ListItemImg src={'https://placeimg.com/50/50'}></ListItemImg></ListItemImgWrapper><ListItemTextWrapper><ListItemLabel>{chance.word()}</ListItemLabel><ListItemStatus>{listStatus[randomPrivateOrPublicIndex]}</ListItemStatus></ListItemTextWrapper></ListItem>);
-  };
+    listItems.push(
+      <ListItem key={uuidv4()}>
+        <ListItemImgWrapper>
+          <ListItemImg src={"https://placeimg.com/50/50"}></ListItemImg>
+        </ListItemImgWrapper>
+        <ListItemTextWrapper>
+          <ListItemLabel>
+            {props.listNames[getRandomIntInclusive(0, listNames.length - 1)]}
+          </ListItemLabel>
+          <ListItemStatus>
+            {listStatus[randomPrivateOrPublicIndex]}
+          </ListItemStatus>
+        </ListItemTextWrapper>
+      </ListItem>
+    );
+  }
   return listItems;
 };
 
-const generatedListItems = generateListItems();
+const ListItemEle = (props) => {
+  let listStatus = ["public", "private"];
+  return (
+    <ListItem key={uuidv4()}>
+      <ListItemImgWrapper>
+        <ListItemImg src={"https://placeimg.com/50/50"}></ListItemImg>
+      </ListItemImgWrapper>
+      <ListItemTextWrapper>
+        <ListItemLabel>{props.listNames[props.i]}</ListItemLabel>
+        <ListItemStatus>
+          {listStatus[getRandomIntInclusive(0, listStatus.length - 1)]}
+        </ListItemStatus>
+      </ListItemTextWrapper>
+    </ListItem>
+  );
+};
+
+const DropDownListEle = (props) => {
+  let listNamesForDropDown = props.listNames;
+  return (
+    <DropDownListContainer>
+      <DropDownList>
+        {listNamesForDropDown.map((listItem, i) => (
+          <ListItemEle key={uuidv4()} listNames={props.listNames} i={i} />
+        ))}
+      </DropDownList>
+    </DropDownListContainer>
+  );
+};
 
 const AddToListDropDown = (props) => {
   const [dropDown, setDropDown] = useState(false);
   const toggleDropDown = () => setDropDown(!dropDown);
 
-  return <AddToListDropDownWrapper>
-    <AddToListSection>
-      Add to List
-    </AddToListSection>
-    <DropDownArrowSection onFocus={toggleDropDown} onBlur={toggleDropDown} tabIndex="0">
-      <DropDownArrowIcon></DropDownArrowIcon>
-    </DropDownArrowSection>
-    {dropDown && (
-      <DropDownListContainer>
-        <DropDownList>
-          {generatedListItems}
-        </DropDownList>
-      </DropDownListContainer>
-    )}
-  </AddToListDropDownWrapper>
+  return (
+    <AddToListDropDownWrapper>
+      <AddToListSection>Add to List</AddToListSection>
+      <DropDownArrowSection
+        onFocus={toggleDropDown}
+        onBlur={toggleDropDown}
+        tabIndex="0"
+      >
+        <DropDownArrowIcon></DropDownArrowIcon>
+      </DropDownArrowSection>
+      {dropDown && <DropDownListEle listNames={props.listNames} />}
+    </AddToListDropDownWrapper>
+  );
 };
 
 export default AddToListDropDown;
