@@ -2,7 +2,7 @@ const s3 = require("../deploy/s3.js");
 const fs = require("fs");
 const path = require("path");
 
-const uploadBuild = async (file, encoding = "") => {
+const uploadBuild = async (file, encoding = "", cacheAge = "300") => {
   await s3.createBucket();
   const buildFile = fs.createReadStream(file);
   buildFile.on("error", (err) => {
@@ -15,15 +15,26 @@ const uploadBuild = async (file, encoding = "") => {
     buildFile,
     "text/javascript",
     encoding,
-    "public-read"
+    "public-read",
+    cacheAge
   );
 };
 
 const run = async () => {
-  await uploadBuild(path.join(__dirname, "../public/checkout_bundle.js"));
+  await uploadBuild(
+    path.join(__dirname, "../public/checkout_bundle.js"),
+    "",
+    "31536000"
+  );
   await uploadBuild(
     path.join(__dirname, "../public/checkout_bundle.js.gz"),
-    "gzip"
+    "gzip",
+    "31536000"
+  );
+  await uploadBuild(
+    path.join(__dirname, "../public/checkout_bundle.js.br"),
+    "br",
+    "31536000"
   );
   process.exit;
 };

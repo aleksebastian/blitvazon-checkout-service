@@ -28,7 +28,8 @@ const uploadToS3 = async (
   fileBody,
   fileType = "",
   encoding = "",
-  ACL = ""
+  ACL = "",
+  cacheAge = "300"
 ) => {
   // Upload file to bucket
   try {
@@ -39,6 +40,7 @@ const uploadToS3 = async (
         Body: fileBody,
         ContentType: fileType,
         ContentEncoding: encoding,
+        CacheControl: `max-age=${cacheAge}`,
         ACL: ACL,
       })
     );
