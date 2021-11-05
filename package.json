@@ -14,16 +14,15 @@
     "start:dev": "nodemon ./server/index.js",
     "build": "webpack --mode=production",
     "build:dev": "webpack --mode=development --watch",
+    "build-report": "webpack --profile --json=compilation-stats.json && webpack-bundle-analyzer --port 4200 compilation-stats.json",
     "deploy": "node ./deploy/upload-build.js",
     "build-ship": "webpack --mode=production && node ./deploy/upload-build.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.13.6",
-    "chance": "^1.1.7",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "faker": "^5.1.0",
     "mongoose": "^5.11.13",
     "node-fetch": "^2.6.1",
     "react": "^17.0.1",
@@ -44,8 +43,10 @@
     "babel-plugin-styled-components": "^1.12.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "chance": "^1.1.8",
     "compression-webpack-plugin": "^9.0.0",
     "enzyme": "^3.11.0",
+    "faker": "^5.5.3",
     "jest": "^26.6.3",
     "jsdom": "^16.4.0",
     "mocha": "^8.2.1",
@@ -54,7 +55,7 @@
     "react-test-renderer": "^17.0.1",
     "sinon": "^9.2.4",
     "webpack": "^5.13.0",
-    "webpack-bundle-analyzer": "^4.4.0",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.3.1"
   },
   "repository": {
