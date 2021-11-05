@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import fetchWithTimeout from "../fetchWithTimeout.js";
 import PriceDeliveryAndStock from "../components/PriceDeliveryAndStock.jsx";
@@ -29,6 +29,8 @@ export default class Checkout extends React.Component {
       inventory: null,
       delivery: {},
       seller: "",
+      secureTransactionText: "",
+      listNames: [],
     };
   }
 
@@ -89,11 +91,45 @@ export default class Checkout extends React.Component {
     }
   }
 
+  async getListNamesAndSecureTransactionText() {
+    const getRandomIntInclusive = (min, max) => {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+    try {
+      const res = await fetchWithTimeout(
+        "http://localhost:4003/listnamesandsecuretransactiontext/id/1",
+        {
+          timeout: 500,
+        }
+      );
+      let data = await res.json();
+      const randomNumOfLists = getRandomIntInclusive(1, 5);
+      const renderedListNames = [];
+      for (let i = 0; i < randomNumOfLists; i++) {
+        renderedListNames.push(
+          data.listNames[getRandomIntInclusive(0, data.listNames.length - 1)]
+        );
+      }
+      this.setState({
+        listNames: renderedListNames,
+        secureTransactionText: data.secureTransactionText,
+      });
+    } catch (e) {
+      this.setState({
+        listNames: [],
+        secureTransactionText: "Unable to get secure transaction details :(",
+      });
+    }
+  }
+
   componentDidMount() {
     let url = window.location.href;
     let productId = url.split("/")[3] || 1000;
     this.getPriceAndInventory(productId);
     this.getSellerDetails(productId);
+    this.getListNamesAndSecureTransactionText();
   }
 
   render() {
@@ -112,11 +148,14 @@ export default class Checkout extends React.Component {
             <QuantityDropDown inventory={this.state.inventory} />
             <AddToCartButton />
             <BuyNowButton />
-            <SecureTransactionAndSellerDetails seller={this.state.seller} />
+            <SecureTransactionAndSellerDetails
+              seller={this.state.seller}
+              secureTransactionText={this.state.secureTransactionText}
+            />
           </div>
         ) : null}
         <Line></Line>
-        <AddToListDropDown />
+        <AddToListDropDown listNames={this.state.listNames} />
       </CheckoutWrapper>
     );
   }
