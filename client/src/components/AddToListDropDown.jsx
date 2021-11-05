@@ -112,35 +112,6 @@ const getRandomIntInclusive = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-const generateListItems = (props) => {
-  let randomNumOfLists = getRandomIntInclusive(1, 5);
-  let listStatus = ["public", "private"];
-  let listItems = [];
-  for (let i = 0; i < randomNumOfLists; i++) {
-    let randomPrivateOrPublicIndex = Math.floor(Math.random() * Math.floor(2));
-    listItems.push(
-      <ListItem key={uuidv4()}>
-        <ListItemImgWrapper>
-          <ListItemImg src={"https://placeimg.com/50/50"}></ListItemImg>
-        </ListItemImgWrapper>
-        <ListItemTextWrapper>
-          <ListItemLabel>
-            {
-              props.listNames[
-                getRandomIntInclusive(0, props.listNames.length - 1)
-              ]
-            }
-          </ListItemLabel>
-          <ListItemStatus>
-            {listStatus[randomPrivateOrPublicIndex]}
-          </ListItemStatus>
-        </ListItemTextWrapper>
-      </ListItem>
-    );
-  }
-  return listItems;
-};
-
 const ListItemEle = (props) => {
   let listStatus = ["public", "private"];
   return (
