@@ -125,7 +125,11 @@ const generateListItems = (props) => {
         </ListItemImgWrapper>
         <ListItemTextWrapper>
           <ListItemLabel>
-            {props.listNames[getRandomIntInclusive(0, listNames.length - 1)]}
+            {
+              props.listNames[
+                getRandomIntInclusive(0, props.listNames.length - 1)
+              ]
+            }
           </ListItemLabel>
           <ListItemStatus>
             {listStatus[randomPrivateOrPublicIndex]}
