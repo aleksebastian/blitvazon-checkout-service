@@ -28,6 +28,17 @@ const PrinventorySchema = Mongoose.Schema({
   inventory: Number,
 });
 
+const ListNamesAndSecureTextSchema = Mongoose.Schema({
+  id: Number,
+  secureTransactionText: String,
+  listNames: Array,
+});
+
 const Prinventory = Mongoose.model("Prinventory", PrinventorySchema);
 
-module.exports = Prinventory;
+const ListNamesAndSecureText = Mongoose.model(
+  "ListNamesAndSecureText",
+  ListNamesAndSecureTextSchema
+);
+
+module.exports = { Prinventory, ListNamesAndSecureText };
