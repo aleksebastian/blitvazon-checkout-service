@@ -1,8 +1,8 @@
 const { expect, assert } = require("chai");
-const createFakeData = require("../database/seed/dataGenerator.js");
+const { createFakeData } = require("../database/seed/dataGenerator.js");
 const Mongoose = require("mongoose");
 const db = "mongodb://localhost/prinventory";
-const Prinventory = require("../database/index.js");
+const { Prinventory } = require("../database/index.js");
 const mongooseOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
