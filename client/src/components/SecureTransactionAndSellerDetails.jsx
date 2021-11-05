@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Chance from "chance";
-const chance = new Chance();
 
 const SecureTransactionAndSellerDetailsWrapper = styled.div`
   margin-top: 15px;
@@ -96,15 +94,22 @@ const X = styled(Text)`
 const SecureTransactionAndSellerDetails = (props) => {
   const [popover, setPopover] = useState(false);
   const togglePopover = () => setPopover(!popover);
-
   return (
     <div>
       <SecureTransactionAndSellerDetailsWrapper>
         <img
           onClick={() => togglePopover()}
-          style={{ height: "15px", verticalAlign: "top", cursor: "pointer" }}
+          style={{
+            width: "6%",
+            height: "auto",
+            verticalAlign: "top",
+            cursor: "pointer",
+            marginLeft: "12px",
+          }}
           src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/checkout/truespc/secured-ssl._CB485936932_.png"
           alt="grey small photo of a lock"
+          width="1000"
+          height="1000"
         ></img>
         <SecureTransactionText onClick={() => togglePopover()}>
           Secure Transaction
@@ -114,7 +119,7 @@ const SecureTransactionAndSellerDetails = (props) => {
             <X onClick={() => togglePopover()}>x</X>
             <PopoverBoldText>Your transaction is secure</PopoverBoldText>
             <RegularText>
-              {`${chance.paragraph({ sentences: 3 })} `}
+              {`${props.secureTransactionText} `}
               <BlueInlineText>Learn more</BlueInlineText>
             </RegularText>
           </SecureTransactionPopover>
@@ -126,7 +131,9 @@ const SecureTransactionAndSellerDetails = (props) => {
                 <SellerDetailsTitle>Ships from</SellerDetailsTitle>
               </td>
               <td>
-                <SellerDetails>{props.seller}</SellerDetails>
+                <SellerDetails>
+                  {props.seller || "Unable to get seller details"}
+                </SellerDetails>
               </td>
             </tr>
             <tr>
@@ -134,7 +141,9 @@ const SecureTransactionAndSellerDetails = (props) => {
                 <SellerDetailsTitle>Sold By</SellerDetailsTitle>
               </td>
               <td>
-                <SellerDetails>{props.seller}</SellerDetails>
+                <SellerDetails>
+                  {props.seller || "Unable to get seller details"}
+                </SellerDetails>
               </td>
             </tr>
           </tbody>
