@@ -2,7 +2,7 @@
 
 ## Checkout service
 
-> Item page checkout microservice developed using React and styled-components following SOA principles. Connected via REST API to an express server and persisting data using mongoDB.
+> Amazon-style checkout microservice that generates, persists, and displays product data through a REST API. Developed using the MERN stack and styled-components for the front-end styling.
 
 ## Related services
 
@@ -36,9 +36,13 @@ npm install -g webpack
 npm install
 ```
 
+### Additional Dependencies
+
+- MongoDb Community Edition - [Download](https://docs.mongodb.com/manual/administration/install-community/)
+
 ### Setup
 
-Run database seeding scripts (requires mongoDB)
+Run database seeding scripts (with MongoDb running)
 
 ```
 npm run seed
@@ -70,7 +74,7 @@ Run React tests
 npm run test:react
 ```
 
-Run all of the above tests
+Run all of the tests above
 
 ```
 npm run test:all
