@@ -4,6 +4,8 @@
 
 > Amazon-style checkout microservice that generates, persists, and displays product data through a REST API. Developed using the MERN stack and styled-components for the front-end styling.
 
+![Site mockup](https://raw.githubusercontent.com/aleksebastian/checkout-service/main/mockup.png)
+
 ## Related services
 
 - [Photos](https://github.com/blitva/photos-service) - Alek O.
