@@ -4,9 +4,11 @@
 
 > Amazon-style checkout microservice that generates, persists, and displays product data through a REST API. Developed using the MERN stack and styled-components for the front-end styling.
 
+![PageSpeed results](https://raw.githubusercontent.com/aleksebastian/checkout-service/main/pagespeed.svg)
+
 ![Site mockup](https://raw.githubusercontent.com/aleksebastian/checkout-service/main/mockup.png)
 
-#### Check out the microservice running at [http://ec2-3-142-94-151.us-east-2.compute.amazonaws.com:3000/1010/](http://ec2-3-142-94-151.us-east-2.compute.amazonaws.com:3000/1010/)
+#### [Check out the live microservice running alongside the photos microservice by clicking here](http://ec2-3-142-94-151.us-east-2.compute.amazonaws.com:3000/)
 
 ## Related services
 
