@@ -46,7 +46,7 @@ npm install
 
 ### Setup
 
-Run database seeding scripts (with MongoDb running)
+Run database seeding script to generate 1000 product ids (MongoDb must be running)
 
 ```
 npm run seed
