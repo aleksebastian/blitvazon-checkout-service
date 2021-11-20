@@ -6,6 +6,8 @@
 
 ![Site mockup](https://raw.githubusercontent.com/aleksebastian/checkout-service/main/mockup.png)
 
+#### Check out the microservice running at [http://ec2-3-142-94-151.us-east-2.compute.amazonaws.com:3000/1010/](http://ec2-3-142-94-151.us-east-2.compute.amazonaws.com:3000/1010/)
+
 ## Related services
 
 - [Photos](https://github.com/blitva/photos-service) - Alek O.
